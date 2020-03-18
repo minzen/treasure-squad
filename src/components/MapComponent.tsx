@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import TreasureDialog from './TreasureDialog'
 
 interface MapComponentProps {
   lat: number
@@ -8,17 +9,28 @@ interface MapComponentProps {
   setLat: Function
   setLng: Function
   setZoom: Function
+  markerDialogOpen: boolean
+  setMarkerDialogOpen: Function
 }
 
 const MapComponent = (props: MapComponentProps) => {
+
+    const [lastClickedLat, setLastClickedLat] = useState(0)
+    const [lastClickedLng, setLastClickedLng] = useState(0)
+
   const handleClickOnMap = (event: MouseEvent) => {
     // Workaround to access attributes not available in MouseEvent
     const mouseEv: any = event
+    props.setMarkerDialogOpen(true)
     console.log('mouseEv', mouseEv.latlng)
-    alert('Clicked lat: ' + mouseEv.latlng.lat + ", lng: "  + mouseEv.latlng.lng)
+    setLastClickedLat(mouseEv.latlng.lat)
+    setLastClickedLng(mouseEv.latlng.lng)
+    // alert('Clicked lat: ' + mouseEv.latlng.lat + ", lng: "  + mouseEv.latlng.lng)
   }
 
   return (
+    <>
+    <TreasureDialog dialogOpen={props.markerDialogOpen} setDialogOpen={props.setMarkerDialogOpen} lat={lastClickedLat} lng={lastClickedLng} />
     <Map
       center={[props.lat, props.lng]}
       zoom={props.zoom}
@@ -32,6 +44,7 @@ const MapComponent = (props: MapComponentProps) => {
         <Popup>a popup</Popup>
       </Marker>
     </Map>
+    </>
   )
 }
 export default MapComponent

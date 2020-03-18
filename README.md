@@ -1,3 +1,14 @@
+# Treasure Squad
+
+This little project enables the user to add markers to a map view with a brief description. One is in other words able to share some personal "treasures" with other user(s). The map view is scrolled to the approximate user location if the permission for geolocation is granted by the user. Otherwise it is possible to search for the desired location by dragging the map view and zooming in and out if needed. A click on the map results in a dialog to be opened up, and then it is possible to type in some text to be stored.
+
+## Used technologies
+
++ ReactJS
++ React-Leaflet
++ Material UI
++ Backend on NodeJS + Express + DB (tbd)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

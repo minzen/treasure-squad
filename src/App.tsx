@@ -8,6 +8,7 @@ const App = () => {
   const [latitude, setLatitude] = useState(53.073635)
   const [longitude, setLongitude] = useState(8.806422)
   const [zoomLevel, setZoomLevel] = useState(13)
+  const [markerDialogOpen, setMarkerDialogOpen] = useState(false)
 
   return (
     <Container maxWidth='xl'>
@@ -23,6 +24,8 @@ const App = () => {
             setLat={setLatitude}
             setLng={setLongitude}
             setZoom={setZoomLevel}
+            markerDialogOpen={markerDialogOpen}
+            setMarkerDialogOpen={setMarkerDialogOpen}
           />
         </Grid>
       </Grid>
