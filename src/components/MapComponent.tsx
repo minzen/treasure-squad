@@ -12,8 +12,10 @@ interface MapComponentProps {
 
 const MapComponent = (props: MapComponentProps) => {
   const handleClickOnMap = (event: MouseEvent) => {
-    console.log('event', event)
-    alert("hello" + event)
+    // Workaround to access attributes not available in MouseEvent
+    const mouseEv: any = event
+    console.log('mouseEv', mouseEv.latlng)
+    alert('Clicked lat: ' + mouseEv.latlng.lat + ", lng: "  + mouseEv.latlng.lng)
   }
 
   return (
