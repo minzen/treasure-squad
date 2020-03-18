@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
+import Map from './components/MapComponent'
+import Header from './components/Header'
+import { Container, Grid } from '@material-ui/core'
 
-function App() {
+const App = () => {
+  const [latitude, setLatitude] = useState(53.073635)
+  const [longitude, setLongitude] = useState(8.806422)
+  const [zoomLevel, setZoomLevel] = useState(13)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container maxWidth='xl'>
+      <Grid container direction='column' justify='center' alignItems='center'>
+        <Grid item xs={12}>
+          <Header />
+        </Grid>
+        <Grid item xs={12}>
+          <Map
+            lat={latitude}
+            lng={longitude}
+            zoom={zoomLevel}
+            setLat={setLatitude}
+            setLng={setLongitude}
+            setZoom={setZoomLevel}
+          />
+        </Grid>
+      </Grid>
+    </Container>
+  )
 }
 
-export default App;
+export default App
